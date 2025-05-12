@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title%} My Flask App{%endblock%}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename= 'style.css')}}">
+    </head>
+    <body>
+        <header>
+            <h1>To-Do List App</h1>
+            <nav>
+                {% if current_user.is_authenticated %}
+                <a href="/">Tasks</a>
+                <a href="/logout">Lougut</a>
+                {%else%}
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+                {%endif%}
+            </nav>
+            <hr>
+        </header>
+        {% block content %}{% endblock %}
+    </body>
+</html>

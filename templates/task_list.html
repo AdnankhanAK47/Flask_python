@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}To-Do List {% endblock %}
+{% block content %}
+    <h2>To-Do List</h2>
+    <form method="POST" action="/add">
+        <input type="text" name="content" placeholder="New Task" required>
+        <button type="submit">Add</button>
+    </from>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            {% if task.completed %}
+                <strike>{{task.content}}</strike>
+            {% else %}
+                {{ task.content }}
+                <a href="/complete/{{ task.id }}">Marks as Done</a>
+            {% endif %}
+                <a href="/delete/{{ task.id }}" style="color:red;">Delete</a>
+        </li>
+            {% endfor %}
+    </ul>
+{%endblock%}
+
